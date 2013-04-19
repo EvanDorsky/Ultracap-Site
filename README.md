@@ -1,9 +1,6 @@
 Ultracap-Site
 =============
 
-Abe flailing about wildly
-
-The organization hasn't been decided yet. For now, everything is in Abe_Flailing_About_Wildly,
-but eventually there will probably be an index.html file in the root directory.
-
-This is a website.
+This is the repository for a website being built for a class project by a group of students attending
+the Franklin W. Olin College of Engineering. It will explore graphene ultracapacitors and their alternaitves through
+dynamic data visualization using D3.
