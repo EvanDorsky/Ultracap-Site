@@ -1,0 +1,19 @@
+function makeData(numPoints, numAttr) {
+    var dataSet = [];
+    for (var i = 0; i < numPoints; i++) {
+	var point = [];
+	for (var j = 0; j < numAttr; j++){
+	    point.push(Math.random());
+	    console.log(point);
+	}
+	dataSet.push(point);
+    }
+    console.log(dataSet);
+    return dataSet;
+}
+
+function initialize(){
+    d3.select('svg#scatter');
+}
+
+$(document).onLoad(initialize);
