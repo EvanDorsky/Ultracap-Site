@@ -1,0 +1,8 @@
+svg .axis {
+    stroke: black;
+}
+
+svg .polygon{
+    stroke:black;
+    fill:teal;
+}
