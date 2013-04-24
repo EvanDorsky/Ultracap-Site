@@ -29,21 +29,39 @@ var svgContainer = d3.select("body")
 // This is a function, even though it's defined as a variable
 var lineFunction = d3.svg.line()
 .x(function(d, i) {
-    var length = lineData.length;
-    var theta = 2*Math.PI*i/length;
-    return w/2+d*Math.cos(theta);
+    if (!isNaN(d)) {
+        var length = d.length;
+        var theta = 2*Math.PI*i/length;
+        return w/2+d[0]*Math.cos(theta);
+    }
+    return 0;
 })
 .y(function(d, i) {
-    var length = lineData.length;
-    var theta = 2*Math.PI*i/length;
-    return h/2+d*Math.sin(theta);
+    if (!isNaN(d)) {
+        var length = d.length;
+        var theta = 2*Math.PI*i/length;
+        return w/2+d[0]*Math.cos(theta);
+    }
+    return 0;
 })
 .interpolate("linear");
 
+var polygon;
+
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
 d3.csv("TestData.csv", function(data) {
-    var polygon = svgContainer.append("path")
-    .attr("d", lineFunction(data))
+    var dataArray = [];
+    var subArray = [];
+    for (var i = 0; i < data.length; i++) {
+        var entry = data[i];
+        subArray = [];
+        for (var j = 0; j < entry.length; j++) {
+            subArray.push(entry[j]);
+        }
+        dataArray.push(entry);
+    }
+    polygon = svgContainer.append("path")
+    .attr("d", lineFunction(dataArray))
     .attr("fill", "blue");
 });
 
