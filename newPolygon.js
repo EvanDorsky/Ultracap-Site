@@ -38,9 +38,10 @@ var svgContainer = d3.select("body")
 .attr("height", h);
 
 // A path is defined by the line, added to the SVG, and styled
-var linePath = svgContainer.append("path")
+var polygon = svgContainer.append("path")
 .attr("d", lineFunction(lineData))
 .attr("fill", "blue");
+polygon.on('click', function(){randomize()});
 
 // This randomizes the data when the button is pressed
 function update() {
