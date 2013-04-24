@@ -14,14 +14,19 @@ function genData() {
         lineData.push(newNumber1);
     }
 }
+// Call this to have the data for the first run
 genData();
 
-d3.csv("TestData.csv", function(data) {
-    console.log(data);
-});
+// Define an SVG with width and height, and place it in the body
+var svgContainer = d3.select("body")
+.append("svg")
+.attr("width", w)
+.attr("height", h);
 
 // Defines the line that will surround the polygon
-// The data is read and "bound" here
+// The "d" argument here is data passed into lineFunction
+// by calling code
+// This is a function, even though it's defined as a variable
 var lineFunction = d3.svg.line()
 .x(function(d, i) {
     var length = lineData.length;
@@ -35,15 +40,12 @@ var lineFunction = d3.svg.line()
 })
 .interpolate("linear");
 
-// Define an SVG with width and height, and place it in the body
-var svgContainer = d3.select("body")
-.append("svg")
-.attr("width", w)
-.attr("height", h);
-
-// A path is defined by the line, added to the SVG, and styled
-var polygon = svgContainer.append("path")
-.attr("d", lineFunction(lineData))
+// Data is bound to the line, added to the SVG as a path, and styled
+.attr("d", lineFunction(function() {}
+    d3.csv("TestData.csv", function(data) {
+        return data;
+    });
+})
 .attr("fill", "blue");
 polygon.on('click', function(){randomize()});
 
