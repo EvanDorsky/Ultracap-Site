@@ -29,10 +29,11 @@ var svgContainer = d3.select("body")
 // This is a function, even though it's defined as a variable
 var lineFunction = d3.svg.line()
 .x(function(d, i) {
-    alert(d);
     if (!isNaN(d)) {
         var length = d.length;
+        alert(length);
         var theta = 2*Math.PI*i/length;
+        alert(d);
         return w/2+d*Math.cos(theta);
     }
     return 0;
@@ -53,7 +54,6 @@ var polygon;
 d3.csv("TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
-    alert(data);
     for (var i = 0; i < data.length; i++) {
         var entry = data[i];
         subArray = [];
