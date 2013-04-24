@@ -40,10 +40,12 @@ var lineFunction = d3.svg.line()
 })
 .interpolate("linear");
 
-// Data is bound to the line, added to the SVG as a path, and styled
-var polygon = svgContainer.append("path")
-.attr("d", lineFunction(lineData))
-.attr("fill", "blue");
+// Data is bound to the line from the CSV, added to the SVG as a path, and styled
+d3.csv("TestData.csv", function(data) {
+    var polygon = svgContainer.append("path")
+    .attr("d", lineFunction(data))
+    .attr("fill", "blue");
+});
 
 polygon.on('click', function(){randomize()});
 
