@@ -1,6 +1,4 @@
-$(document).ready (function{
-    //Note: We should transition this to JQuery like Abe did.
-
+$(document).ready (function {
     var w = 500;
     var h = 500;
 
@@ -57,4 +55,4 @@ function update() {
 function randomize() {
     update();
 }
-})
+});
