@@ -63,6 +63,9 @@ $(document).ready(function() {
     h = parseFloat(svg.attr('height'));
     w = parseFloat(svg.attr('width'));
     data = makeData(5);
+    d3.csv("TestData.csv", function(data) {
+        
+    });
     range = d3.min([h,w]) * 3 / 8;
     scale = makeScale(data, range);
     points = makePoints(data, scale);
