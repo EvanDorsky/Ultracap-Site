@@ -60,10 +60,11 @@ d3.csv("TestData.csv", function(data) {
         for (var key in entry) {
             subArray.push(entry[key]);
         }
-        dataArray.push(entry);
+        dataArray.push(subArray);
     }
+    var column1 = dataArray[0];
     polygon = svgContainer.append("path")
-    .attr("d", lineFunction(dataArray))
+    .attr("d", lineFunction(column1))
     .attr("fill", "blue");
 });
 
