@@ -53,6 +53,7 @@ var polygon;
 d3.csv("TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
+    alert(data);
     for (var i = 0; i < data.length; i++) {
         var entry = data[i];
         subArray = [];
