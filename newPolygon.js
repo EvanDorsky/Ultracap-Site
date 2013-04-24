@@ -42,7 +42,8 @@ var lineFunction = d3.svg.line()
 
 // Data is bound to the line, added to the SVG as a path, and styled
 .attr("d", lineFunction(function() {}
-    d3.csv("TestData.csv", function(data) {
+    d3.csv("TestData.csv", function(data) {c
+        console.log(data);
         return data;
     });
 })
