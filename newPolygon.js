@@ -61,6 +61,7 @@ d3.csv("TestData.csv", function(data) {
         }
         for (var name in entry) {
             alert(name);
+            alert(entry[name]);
         }
         dataArray.push(entry);
     }
