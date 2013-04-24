@@ -59,10 +59,10 @@ d3.csv("TestData.csv", function(data) {
         for (var j = 0; j < entry.length; j++) {
             subArray.push(entry[j]);
         }
+        for (var name in entry) {
+            alert(name);
+        }
         dataArray.push(entry);
-    }
-    for (var name in data) {
-        alert(name);
     }
     polygon = svgContainer.append("path")
     .attr("d", lineFunction(dataArray))
