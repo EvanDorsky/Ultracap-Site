@@ -17,10 +17,6 @@ function genData() {
 }
 genData();
 
-d3.csv("TestData.csv", function(data) {
-    console.log(data);
-})
-
 // Defines the line that will surround the polygon
 // The data is read and "bound" here
 var lineFunction = d3.svg.line()
