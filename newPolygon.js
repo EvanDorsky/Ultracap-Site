@@ -1,9 +1,10 @@
-//Note: We should transition this to JQuery like Abe did.
+$(document).ready (function{
+    //Note: We should transition this to JQuery like Abe did.
 
-var w = 500;
-var h = 500;
+    var w = 500;
+    var h = 500;
 
-var lineData = [];
+    var lineData = [];
 
 // Generates test data
 function genData() {
@@ -56,3 +57,4 @@ function update() {
 function randomize() {
     update();
 }
+})
