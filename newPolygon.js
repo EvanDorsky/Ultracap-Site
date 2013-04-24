@@ -56,12 +56,8 @@ d3.csv("TestData.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
         var entry = data[i];
         subArray = [];
-        for (var j = 0; j < entry.length; j++) {
-            subArray.push(entry[j]);
-        }
-        for (var name in entry) {
-            alert(name);
-            alert(entry[name]);
+        for (var key in entry) {
+            subArray.push(entry[key]);
         }
         dataArray.push(entry);
     }
