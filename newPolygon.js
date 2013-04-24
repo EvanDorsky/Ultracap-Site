@@ -65,7 +65,7 @@ d3.csv("TestData.csv", function(data) {
     .attr("fill", "blue");
 });
 
-polygon.on('click', function(){randomize()});
+// polygon.on('click', function(){randomize()});
 
 // This randomizes the data when the button is pressed
 function update() {
