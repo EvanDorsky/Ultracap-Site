@@ -33,7 +33,7 @@ var lineFunction = d3.svg.line()
         var length = d.length;
         alert(length);
         var theta = 2*Math.PI*i/length;
-        alert(d);
+        // alert(d);
         return w/2+d*Math.cos(theta);
     }
     return 0;
