@@ -29,6 +29,7 @@ var svgContainer = d3.select("body")
 // This is a function, even though it's defined as a variable
 var lineFunction = d3.svg.line()
 .x(function(d, i) {
+    alert(d[i]);
     if (!isNaN(d[i])) {
         var length = d.length;
         var theta = 2*Math.PI*i/length;
