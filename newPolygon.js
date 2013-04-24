@@ -47,8 +47,9 @@ var polygon = svgContainer.append("path")
         console.log(data);
         return data;
     });
-})
+}))
 .attr("fill", "blue");
+
 polygon.on('click', function(){randomize()});
 
 // This randomizes the data when the button is pressed
