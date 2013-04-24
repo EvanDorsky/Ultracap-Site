@@ -8,7 +8,7 @@ $(document).ready(function() {
 function genData() {
     lineData = [];
     var numDataPoints = 8;
-    var xRange = Math.random() * w/2;
+    var xRange = w/2;
     for (var i = 0; i < numDataPoints; i++) {
         var newNumber1 = Math.round(Math.random() * xRange);
         lineData.push(newNumber1);
