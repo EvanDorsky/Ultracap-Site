@@ -41,6 +41,7 @@ var lineFunction = d3.svg.line()
 .interpolate("linear");
 
 // Data is bound to the line, added to the SVG as a path, and styled
+var polygon = svgContainer.append("path")
 .attr("d", lineFunction(function() {}
     d3.csv("TestData.csv", function(data) {c
         console.log(data);
