@@ -31,18 +31,18 @@ var lineFunction = d3.svg.line()
 .x(function(d, i) {
     var length = lineData.length;
     var theta = 2*Math.PI*i/length;
-    return w/2+2*Math.cos(theta);
+    return w/2+d*Math.cos(theta);
 })
 .y(function(d, i) {
     var length = lineData.length;
     var theta = 2*Math.PI*i/length;
-    return h/2+2*Math.sin(theta);
+    return h/2+d*Math.sin(theta);
 })
 .interpolate("linear");
 
 // Data is bound to the line, added to the SVG as a path, and styled
 var polygon = svgContainer.append("path")
-.attr("d", lineFunction(lineData)
+.attr("d", lineFunction(lineData))
 .attr("fill", "blue");
 
 polygon.on('click', function(){randomize()});
