@@ -68,7 +68,8 @@ d3.csv("TestData.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
         polygon = svgContainer.append("path")
         .attr("d", lineGenerator(dataArray[i]))
-        .attr("fill", "blue");
+        .attr("fill", "blue")
+        .fill-opacity(0.5);
     }
 });
 
