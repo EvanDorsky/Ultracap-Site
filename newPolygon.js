@@ -31,9 +31,7 @@ var lineFunction = d3.svg.line()
 .x(function(d, i) {
     if (!isNaN(d)) {
         var length = d.length;
-        alert(length);
         var theta = 2*Math.PI*i/length;
-        // alert(d);
         return w/2+d*Math.cos(theta);
     }
     return 0;
@@ -42,7 +40,7 @@ var lineFunction = d3.svg.line()
     if (!isNaN(d)) {
         var length = d.length;
         var theta = 2*Math.PI*i/length;
-        return w/2+d*Math.cos(theta);
+        return w/2+d*Math.sin(theta);
     }
     return 0;
 })
@@ -63,6 +61,7 @@ d3.csv("TestData.csv", function(data) {
         dataArray.push(subArray);
     }
     var column1 = dataArray[0];
+    alert(column1);
     polygon = svgContainer.append("path")
     .attr("d", lineFunction(column1))
     .attr("fill", "blue");
