@@ -8,7 +8,8 @@ var svgContainer = d3.select("body")
 .attr("width", w)
 .attr("height", h);
 
-// Defines the the graph based on the input data
+// Defines the the polygon for the graph
+// based on the input data
 function graphGen (data, scales) {
     var length = data.length;
 
@@ -17,14 +18,16 @@ function graphGen (data, scales) {
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+scales[i](d*Math.cos(theta));
+            var scale = scales[i];
+            return w/2+scale(d*Math.cos(theta));
         }
         return w/2+50*Math.cos(theta);
     })
     .y(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+scales[i](d*Math.sin(theta));
+            var scale = scales[i];
+            return w/2+scale(d*Math.sin(theta));
         }
         return w/2+50*Math.sin(theta);
     })
@@ -64,8 +67,7 @@ d3.csv("TestData.csv", function(data) {
     }
 
     // Then create the scales and append the axes
-    // A scale for each row finding the max
-
+    // A scale for each row finding the max in the row
     var scales = [];
     for (var i = 0; i < sortedData.length; i++) {
         var axisScale = d3.scale.linear()
@@ -73,8 +75,6 @@ d3.csv("TestData.csv", function(data) {
         .range([0, w/2]);
         scales.push(axisScale);
     }
-    alert(dataArray[1]);
-    alert(sortedData[1]);
     
 //THEN DO POLYGON
     // Make a polygon for each row
