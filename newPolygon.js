@@ -69,8 +69,7 @@ d3.csv("TestData.csv", function(data) {
     var scales = [];
     for (var i = 0; i < sortedData.length; i++) {
         var axisScale = d3.scale.linear()
-        .domain([0, d3.max(sortedData[i], function(d) { return d[0]; })])
-        .range([0, w/50]);
+        .domain([0, d3.max(sortedData[i]);
         scales.push(axisScale);
     }
     alert(dataArray[1]);
