@@ -73,6 +73,8 @@ d3.csv("TestData.csv", function(data) {
         .range([0, w/2]);
         scales.push(axisScale);
     }
+    alert(dataArray);
+    alert(sortedData);
     
 //THEN DO POLYGON
     // Make a polygon for each row
