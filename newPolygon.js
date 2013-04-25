@@ -9,7 +9,7 @@ var svgContainer = d3.select("body")
 .attr("height", h);
 
 // Defines the the graph based on the input data
-function graphGen (data) {
+function graphGen (data, scales) {
     var length = data.length;
 
     // Defines the main polygon
@@ -17,14 +17,14 @@ function graphGen (data) {
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+d*Math.cos(theta);
+            return w/2+scales[i](d*Math.cos(theta));
         }
         return w/2+50*Math.cos(theta);
     })
     .y(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+d*Math.sin(theta);
+            return w/2+scales[i](d*Math.sin(theta));
         }
         return w/2+50*Math.sin(theta);
     })
@@ -49,14 +49,7 @@ d3.csv("TestData.csv", function(data) {
         }
         dataArray.push(subArray);
     }
-
-    // Make a polygon for each row
-    for (var i = 0; i < data.length; i++) {
-        polygon = svgContainer.append("path")
-        .attr("d", graphGen(dataArray[i]) + "Z")
-        .attr("class", "polygon")
-        .attr("fill-opacity", 0.5);
-    }
+//FIRST DO AXES
     // First set up the empty array
     var sortedData = [];
     for (var j = 0; j < subArray.length; j++) {
@@ -72,11 +65,24 @@ d3.csv("TestData.csv", function(data) {
 
     // Then create the scales and append the axes
     // A scale for each row finding the max
+
+    var scales = [];
     for (var i = 0; i < sortedData.length; i++) {
         var axisScale = d3.scale.linear()
         .domain([0, d3.max(sortedData[i], function(d) { return d[0]; })])
         .range([0, w/2]);
+        scales.push(axisScale);
     }
+    
+//THEN DO POLYGON
+    // Make a polygon for each row
+    for (var i = 0; i < data.length; i++) {
+        polygon = svgContainer.append("path")
+        .attr("d", graphGen(dataArray[i], scales) + "Z")
+        .attr("class", "polygon")
+        .attr("fill-opacity", 0.5);
+    }
+
 });
 
 });
