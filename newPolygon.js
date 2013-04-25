@@ -48,9 +48,7 @@ d3.csv("TestData.csv", function(data) {
     var column1 = dataArray[0];
     for (var i = 0; i < data.length; i++) {
         polygon = svgContainer.append("path")
-        .attr("d", polygonGen(dataArray[i]))
-        .attr("fill", "blue")
-        .attr("fill-opacity", 0.5)
+        .attr("d", polygonGen(dataArray[i]) + "Z")
         .attr("class", "polygon");
     }
 });
