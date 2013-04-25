@@ -17,14 +17,14 @@ function graphGen (data, scales) {
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+scales[i](d*Math.cos(theta))/100;
+            return w/2+scales[i](d*Math.cos(theta));
         }
         return w/2+50*Math.cos(theta);
     })
     .y(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+scales[i](d*Math.sin(theta))/100;
+            return w/2+scales[i](d*Math.sin(theta));
         }
         return w/2+50*Math.sin(theta);
     })
@@ -70,11 +70,11 @@ d3.csv("TestData.csv", function(data) {
     for (var i = 0; i < sortedData.length; i++) {
         var axisScale = d3.scale.linear()
         .domain([0, d3.max(sortedData[i], function(d) { return d[0]; })])
-        .range([0, w/2]);
+        .range([0, w/50]);
         scales.push(axisScale);
     }
-    alert(dataArray);
-    alert(sortedData);
+    alert(dataArray[1]);
+    alert(sortedData[1]);
     
 //THEN DO POLYGON
     // Make a polygon for each row
