@@ -17,14 +17,14 @@ function graphGen (data, scales) {
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+scales[i](d*Math.cos(theta));
+            return w/2+scales[i](d*Math.cos(theta))/100;
         }
         return w/2+50*Math.cos(theta);
     })
     .y(function(d, i) {
         var theta = 2*Math.PI*i/length;
         if (!isNaN(d)) {
-            return w/2+scales[i](d*Math.sin(theta));
+            return w/2+scales[i](d*Math.sin(theta))/100;
         }
         return w/2+50*Math.sin(theta);
     })
