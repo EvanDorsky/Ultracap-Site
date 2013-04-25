@@ -36,6 +36,8 @@ function graphGen (data) {
 var polygon;
 
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
+// Everything has to happen here because CSV is asynchronous
+// Nothing after this call will have access to any variables assigned here
 d3.csv("TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
@@ -52,7 +54,28 @@ d3.csv("TestData.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
         polygon = svgContainer.append("path")
         .attr("d", graphGen(dataArray[i]) + "Z")
-        .attr("class", "polygon");
+        .attr("class", "polygon")
+        .attr("fill-opacity", 0.5);
+    }
+    // First set up the empty array
+    var sortedData = [];
+    for (var j = 0; j < subArray.length; j++) {
+        sortedData.push([]);
+    }
+
+    // Transposing the data
+    for (var i = 0; i < dataArray.length; i++) {
+        for (var j = 0; j < dataArray[i].length; j++) {
+            sortedData[j][i] = dataArray[i][j];
+        }
+    }
+
+    // Then create the scales and append the axes
+    // A scale for each row finding the max
+    for (var i = 0; i < sortedData.length; i++) {
+        var axisScale = d3.scale.linear()
+        .domain([0, d3.max(sortedData[i], function(d) { return d[0]; })])
+        .range([0, w/2]);
     }
 });
 
