@@ -34,7 +34,7 @@ var lineFunction = d3.svg.line()
         var theta = 2*Math.PI*i/length;
         return w/2+d*Math.cos(theta);
     }
-    return 0;
+    return 50*Math.cos(theta);
 })
 .y(function(d, i) {
     if (!isNaN(d)) {
@@ -42,7 +42,7 @@ var lineFunction = d3.svg.line()
         var theta = 2*Math.PI*i/length;
         return w/2+d*Math.sin(theta);
     }
-    return 0;
+    return 50*Math.sin(theta);
 })
 .interpolate("linear");
 
