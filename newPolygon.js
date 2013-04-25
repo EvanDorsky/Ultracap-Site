@@ -32,7 +32,6 @@ function lineGenerator (data) {
     .x(function(d, i) {
         var length = data.length;
         var theta = 2*Math.PI*i/length;
-        alert(theta);
         if (!isNaN(d)) {
             return w/2+d*Math.cos(theta);
         }
@@ -48,7 +47,7 @@ function lineGenerator (data) {
     })
     .interpolate("linear");
 
-    return lineFunction(data)
+    return lineFunction(data);
 }
 
 var polygon;
@@ -66,10 +65,11 @@ d3.csv("TestData.csv", function(data) {
         dataArray.push(subArray);
     }
     var column1 = dataArray[0];
-    alert(column1);
-    polygon = svgContainer.append("path")
-    .attr("d", lineGenerator(column1))
-    .attr("fill", "blue");
+    for (var i = 0; i < data.length; i++) {
+        polygon = svgContainer.append("path")
+        .attr("d", lineGenerator(dataArray[i]))
+        .attr("fill", "blue");
+    }
 });
 
 // polygon.on('click', function(){randomize()});
