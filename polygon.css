@@ -5,4 +5,5 @@ svg .axis {
 svg .polygon{
     stroke:black;
     fill:teal;
+    opacity:0.5;
 }

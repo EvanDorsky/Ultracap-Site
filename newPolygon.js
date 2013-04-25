@@ -8,9 +8,11 @@ var svgContainer = d3.select("body")
 .attr("width", w)
 .attr("height", h);
 
-// Defines the the polygon based on the input data
-function polygonGen (data) {
+// Defines the the graph based on the input data
+function graphGen (data) {
     var length = data.length;
+
+    // Defines the main polygon
     var polygonLine = d3.svg.line()
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
@@ -45,10 +47,11 @@ d3.csv("TestData.csv", function(data) {
         }
         dataArray.push(subArray);
     }
-    var column1 = dataArray[0];
+
+    // Make a polygon for each row
     for (var i = 0; i < data.length; i++) {
         polygon = svgContainer.append("path")
-        .attr("d", polygonGen(dataArray[i]) + "Z")
+        .attr("d", graphGen(dataArray[i]) + "Z")
         .attr("class", "polygon");
     }
 });
