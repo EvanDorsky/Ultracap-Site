@@ -29,17 +29,17 @@ var svgContainer = d3.select("body")
 // This is a function, even though it's defined as a variable
 var lineFunction = d3.svg.line()
 .x(function(d, i) {
+    var theta = 2*Math.PI*i/length;
     if (!isNaN(d)) {
         var length = d.length;
-        var theta = 2*Math.PI*i/length;
         return w/2+d*Math.cos(theta);
     }
     return 50*Math.cos(theta);
 })
 .y(function(d, i) {
+    var theta = 2*Math.PI*i/length;
     if (!isNaN(d)) {
         var length = d.length;
-        var theta = 2*Math.PI*i/length;
         return w/2+d*Math.sin(theta);
     }
     return 50*Math.sin(theta);
@@ -61,7 +61,7 @@ d3.csv("TestData.csv", function(data) {
         dataArray.push(subArray);
     }
     var column1 = dataArray[0];
-    alert(column1);
+    alert(column1)
     polygon = svgContainer.append("path")
     .attr("d", lineFunction(column1))
     .attr("fill", "blue");
