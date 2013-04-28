@@ -46,7 +46,7 @@ var polygon;
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
 // Everything has to happen here because CSV is asynchronous
 // Nothing after this call will have access to any variables assigned here
-d3.csv("TestData.csv", function(data) {
+d3.csv("/static/TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
     for (var i = 0; i < data.length; i++) {

@@ -5,9 +5,11 @@
     <title>D3 Test</title>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="polygon.css">
-    <script type="text/javascript" src="newPolygon.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/polygon.css">
+    {% block scripts %}
+    {% endblock %}
   </head>
   <body>
+    {% block content %}{% endblock %}
   </body>
 </html>
