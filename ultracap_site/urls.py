@@ -9,6 +9,7 @@ import views
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', views.home),
+    url(r'^(?P<place>\w+)/$', views.route),
     # url(r'^ultracap_site/', include('ultracap_site.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
