@@ -3,10 +3,7 @@ $(document).ready(function() {
     var h = 500;
 
 // Define an SVG with width and height, and place it in the body
-var svgContainer = d3.select("body")
-.append("svg")
-.attr("width", w)
-.attr("height", h);
+var svgContainer = d3.select("svg.energy_sources")
 
 // Defines the the polygon for the graph
 // based on the input data
@@ -77,8 +74,8 @@ d3.csv("/static/TestData.csv", function(data) {
         var axisScale = d3.scale.linear()
         .domain([0, d3.max(sortedData[i])])
         .range([0, w/2]);
-        alert(sortedData[i]);
-        alert(d3.max(sortedData[i]));
+        console.log(sortedData[i]);
+        console.log(d3.max(sortedData[i]));
         scales.push(axisScale);
     }
     
