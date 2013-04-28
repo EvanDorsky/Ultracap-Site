@@ -12,24 +12,18 @@ var svgContainer = d3.select("body")
 // based on the input data
 function graphGen (data, scales) {
     var length = data.length;
-
     // Defines the main polygon
     var polygonLine = d3.svg.line()
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
-        if (!isNaN(d)) {
-            var scale = scales[i];
-            return w/2+scale(d*Math.cos(theta));
-        }
-        return w/2+50*Math.cos(theta);
+        // alert(theta);
+        var scale = scales[i];
+        return w/2+scale(d)*Math.cos(theta);
     })
     .y(function(d, i) {
         var theta = 2*Math.PI*i/length;
-        if (!isNaN(d)) {
-            var scale = scales[i];
-            return w/2+scale(d*Math.sin(theta));
-        }
-        return w/2+50*Math.sin(theta);
+        var scale = scales[i];
+        return w/2+scale(d)*Math.sin(theta);
     })
     .interpolate("linear");
 
@@ -52,10 +46,15 @@ d3.csv("/static/TestData.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
         var entry = data[i];
         subArray = [];
+        var j = 0;
         for (var key in entry) {
-            subArray.push(entry[key]);
+            if (j>1) {
+                subArray.push(entry[key]);
+            }
+            j++;
         }
         dataArray.push(subArray);
+        // alert(subArray);
     }
 //FIRST DO SCALES
     // First set up the empty array
@@ -78,6 +77,8 @@ d3.csv("/static/TestData.csv", function(data) {
         var axisScale = d3.scale.linear()
         .domain([0, d3.max(sortedData[i])])
         .range([0, w/2]);
+        alert(sortedData[i]);
+        alert(d3.max(sortedData[i]));
         scales.push(axisScale);
     }
     
