@@ -36,6 +36,11 @@ function graphGen (data, scales) {
     return polygonLine(data);
 }
 
+// Returns an array of axes, one for each row
+function axesGen (data, scales) {
+
+}
+
 var polygon;
 
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
@@ -52,7 +57,7 @@ d3.csv("TestData.csv", function(data) {
         }
         dataArray.push(subArray);
     }
-//FIRST DO AXES
+//FIRST DO SCALES
     // First set up the empty array
     var sortedData = [];
     for (var j = 0; j < subArray.length; j++) {
@@ -84,7 +89,15 @@ d3.csv("TestData.csv", function(data) {
         .attr("class", "polygon")
         .attr("fill-opacity", 0.5);
     }
-
+// THEN DO AXES
+    // generate them
+    // var axes = axesGen(data, scales);
+    // append them
+    for (var i = 0; i < axes.length; i++) {
+        svg.append("g")
+        .call(axes[i]);
+    }
+    // and then I have to transform them if I don't do that in axesGen
 });
 
 });
