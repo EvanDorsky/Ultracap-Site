@@ -38,7 +38,10 @@ body{
 }
 
 #contentbox{
-    padding-top:120px;
+    position:absolute;
+    top:100px;
+    left:150px;
+    padding:20px;
 }
 
 .header h1{
@@ -52,6 +55,7 @@ body{
 
 .header .navbar{
     position:absolute;
+    z-index:10;
     bottom:0px;
     height:20px;
     width:100%;
@@ -59,7 +63,7 @@ body{
     background-color:#909090;
 }
 
-a.navitem{
+.navitem{
     display:block;
     float:left;
     padding-left:10px;
@@ -68,4 +72,12 @@ a.navitem{
     height:100%;
     color:#e0e0e0;
     background-color:#404040;
+}
+
+.navitem:hover{
+    background-color:#606060;
+}
+
+.navitem#active{
+    background-color:#606060;
 }

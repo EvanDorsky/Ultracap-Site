@@ -13,12 +13,20 @@
   <body>
     <div class='header'>
       <div class="container">
-	<h1> {% block title %} No Title {% endblock %} </h1>
+	<a href="/home/"><h1> {% block title %} No Title {% endblock %} </h1></a>
       </div>
       <div class="navbar">
 	<div class="container">
 	  <div class="spacer"></div>
-	  <a class="navitem" href="/home/">Home</a>
+	  <a class="navitem"
+	     {% if place == 'compare' %}id="active"{% endif %}
+	     href="/compare/">See the Breakdown</a>
+	  <a class="navitem"
+	     {% if place == 'why' %}id="active"{% endif %}
+	     href="/why/">Why Graphene?</a>
+	  <a class="navitem"
+	     {% if place == 'explore' %}id="active"{% endif %}
+	     href="/explore/">Explore the Data</a>
 	</div>
       </div>
     </div>
