@@ -2,15 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>D3 Test</title>
+    <title>Ultracapacitors</title>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/base.css">
     <link rel="stylesheet" type="text/css" href="/static/polygon.css">
     {% block scripts %}
     {% endblock %}
   </head>
   <body>
-    <h1> {% block title %} No Title {% endblock %} </h1>
-    {% block content %}{% endblock %}
+    <div class='header'>
+      <div class="container">
+	<h1> {% block title %} No Title {% endblock %} </h1>
+      </div>
+      <div class="navbar">
+	<div class="container">
+	  <div class="spacer"></div>
+	  <a class="navitem" href="/home/">Home</a>
+	</div>
+      </div>
+    </div>
+    <div class="container">
+      <div id="sidebar">
+	{% block sidebar %}Hello, Sidebar!{% endblock %}
+      </div>
+      <div id="contentbox">
+	{% block content %}{% endblock %}
+      </div>
+    </div>
   </body>
 </html>
