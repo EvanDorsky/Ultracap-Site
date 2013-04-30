@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var w = 500;
+    var padding = 20;
     var h = 500;
 
 // Define an SVG with width and height, and place it in the body
@@ -39,7 +40,7 @@ var polygon;
 d3.csv("/static/TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < 5; i++) {
         var entry = data[i];
         subArray = [];
         var j = 0;
@@ -75,13 +76,14 @@ d3.csv("/static/TestData.csv", function(data) {
         // .range([0, w/2]);
         var axisScale = d3.scale.log()
         .domain([d3.min(sortedData[i])-1, d3.max(sortedData[i])])
-        .range([0, w/2]);
+        .range([0, w/2-padding]);
         scales.push(axisScale);
     }
     
 //THEN DO POLYGON
     // Make a polygon for each row
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < dataArray.length; i++) {
+        alert("HERE");
         polygon = svgContainer.append("path")
         .attr("d", graphGen(dataArray[i], scales) + "Z")
         .attr("class", "polygon")
@@ -91,10 +93,11 @@ d3.csv("/static/TestData.csv", function(data) {
     // generate them
     // append them
     var subArray = dataArray[0];
+    var axisLength = w/2+10
     for (var j = 0; j < subArray.length; j++) {
         var theta = 2*Math.PI*j/subArray.length;
-        var endPointx = w/2+w/2*Math.cos(theta);
-        var endPointy = w/2+w/2*Math.sin(theta);
+        var endPointx = w/2+axisLength*Math.cos(theta);
+        var endPointy = w/2+axisLength*Math.sin(theta);
         svgContainer.append("line")
         .attr("x1", w/2)
         .attr("y1", w/2)
@@ -102,7 +105,6 @@ d3.csv("/static/TestData.csv", function(data) {
         .attr("y2", endPointy)
         .style("stroke", "black");
     }
-    // and then I have to transform them if I don't do that in axesGen
 });
 //end d3 CSV call
 
