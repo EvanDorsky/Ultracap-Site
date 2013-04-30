@@ -1,0 +1,15 @@
+
+svg .axis {
+  stroke: none;
+  fill: black;
+}
+
+svg.axis text {
+  font-family: sans;
+  font-size: 11px;
+}
+
+svg .point {
+  stroke: black;
+  fill: teal;
+}
