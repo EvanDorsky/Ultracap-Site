@@ -15,6 +15,9 @@ function graphGen (data, scales) {
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
         var scale = scales[i];
+        console.log(i);
+        console.log(d);
+        console.log(w/2+scale(d)*Math.cos(theta));
         return w/2+scale(d)*Math.cos(theta);
     })
     .y(function(d, i) {
@@ -40,7 +43,7 @@ var polygon;
 d3.csv("/static/TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < data.length; i++) {
         var entry = data[i];
         subArray = [];
         var j = 0;
@@ -51,7 +54,6 @@ d3.csv("/static/TestData.csv", function(data) {
             j++;
         }
         dataArray.push(subArray);
-        // alert(subArray);
     }
 //FIRST DO SCALES
     // First set up the empty array
@@ -66,6 +68,7 @@ d3.csv("/static/TestData.csv", function(data) {
             sortedData[j][i] = parseFloat(dataArray[i][j]);
         }
     }
+    console.log(sortedData);
 
     // Then create the scales and append the axes
     // A scale for each row finding the max in the row
@@ -75,7 +78,7 @@ d3.csv("/static/TestData.csv", function(data) {
         // .domain([0, d3.max(sortedData[i])])
         // .range([0, w/2]);
         var axisScale = d3.scale.log()
-        .domain([d3.min(sortedData[i])-1, d3.max(sortedData[i])])
+        .domain([d3.min(sortedData[i]), d3.max(sortedData[i])])
         .range([0, w/2-padding]);
         scales.push(axisScale);
     }
@@ -83,7 +86,6 @@ d3.csv("/static/TestData.csv", function(data) {
 //THEN DO POLYGON
     // Make a polygon for each row
     for (var i = 0; i < dataArray.length; i++) {
-        alert("HERE");
         polygon = svgContainer.append("path")
         .attr("d", graphGen(dataArray[i], scales) + "Z")
         .attr("class", "polygon")
