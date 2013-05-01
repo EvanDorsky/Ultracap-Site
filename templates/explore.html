@@ -9,5 +9,18 @@ See the Data
 {% endblock %}
 
 {% block content %}
-<svg class="explore_data" width=500 height=500> </svg>
+<div class="chart">
+  <svg class="explore_data" width=500 height=500> </svg>
+</div>
+<div class="axis select">
+  <span class="x dropdown label">
+    <select class="x dropdown"> </select>
+  </span>
+  <span class="vs"> VS </span>
+  <span class="y dropdown label">
+    <select class="y dropdown"> </select>
+  </span>
+
+</div>
+
 {% endblock %}

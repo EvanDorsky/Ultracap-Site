@@ -141,19 +141,45 @@ $(document).ready(function() {
       [.3,  3.5,  1,    3],
       [1,   22,   300,  5]
   ];
-  var ret = make_graph(svg, testData, [0, 1]);
+  var current_x = 0; 
+  var current_y = 0;
+  
+  var ret = make_graph(svg, testData, [0, 0]);
   var points = ret[0];
   var xAxis = ret[1];
   var yAxis = ret[2];
   var gxAxis = ret[3];
   var gyAxis = ret[4];
   
+  
   labels = ["Energy Density (W/kg)",
     "Something else (asdf)",
     "Mass (kg",
     "Why do you ask??"];
+
   set_labels(svg, labels[0], labels[1]);
   d3.selectAll(".point").on("click", function(d) {
-    update(svg, testData, labels, points, [xAxis, yAxis], [gxAxis, gyAxis], [1, 2]);
+    update(svg, testData, labels, points,
+      [xAxis, yAxis], [gxAxis, gyAxis], [current_x, current_y]);
+  });
+
+  console.log(labels);
+  d3.selectAll("select.dropdown")
+    .selectAll("option")
+    .data(labels)
+    .enter()
+    .append("option")
+    .text(function(d) {
+      return d;
+    })
+
+  d3.selectAll("select.dropdown").on("change", function(d, i) {
+    if (d3.select(this).classed("x")) {
+      current_x = this.selectedIndex;
+    } else {
+      current_y = this.selectedIndex;
+    }
+    update(svg, testData, labels, points,
+      [xAxis, yAxis], [gxAxis, gyAxis], [current_x, current_y]);
   });
 });

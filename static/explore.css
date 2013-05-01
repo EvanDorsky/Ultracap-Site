@@ -23,3 +23,7 @@ svg .point {
 svg {
   border: 2px black solid;
 }
+
+span .dropdown {
+  margin: 0px 30px;
+}
