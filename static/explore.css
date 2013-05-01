@@ -11,5 +11,15 @@ svg.axis text {
 
 svg .point {
   stroke: black;
-  fill: teal;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  spake-rendering: crispEdges;
+}
+
+svg {
+  border: 2px black solid;
 }
