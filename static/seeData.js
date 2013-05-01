@@ -1,6 +1,6 @@
 var padding = 60;
-var width = 400;
-var height = 300;
+var width = 700;
+var height = 500;
 
 function make_scale(data, index) {
   var get_elem = function(indx) {
