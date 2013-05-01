@@ -26,7 +26,7 @@ function make_scale(data, index) {
   return [xScale, yScale];
 }
 
-function update(data, points, axis, axis_rep, index) {
+function update(element, data, labels, points, axis, axis_rep, index) {
   var scale = make_scale(data, index);
   var xScale = scale[0];
   var yScale = scale[1];
@@ -46,13 +46,15 @@ function update(data, points, axis, axis_rep, index) {
     .call(axis[1])
   
   points.transition()
-  .attr("cx", function(d) {
-    return xScale(d[index[0]]);
-  })
-  .attr("cy", function(d) {
-    return yScale(d[index[1]]);
-  })
-  .duration(1000);
+    .attr("cx", function(d) {
+      return xScale(d[index[0]]);
+    })
+    .attr("cy", function(d) {
+      return yScale(d[index[1]]);
+    })
+    .duration(1000);
+
+  set_labels(element, labels[index[0]], labels[index[1]]);
 }
 
 function make_graph(element, data, index) {
@@ -100,17 +102,44 @@ function make_graph(element, data, index) {
   return [points, xAxis, yAxis, gxAxis, gyAxis]
 }
 
+function set_labels(element, xLabel, yLabel) {
+  var xlabel = d3.select(".x_label");
+  console.log(xlabel.empty())
+  if (xlabel.empty()) {
+    xlabel = element.append("text")
+  }
+
+  console.log(xlabel)
+  xlabel.attr("class", "x_label")
+      .attr("x", width/2)
+      .attr("y", height+40)
+      .text(xLabel)
+      .attr("text-anchor", "middle")
+  
+  var ylabel = d3.select(".y_label");
+  if (ylabel.empty()) {
+    ylabel = element.append("text")
+  }
+
+  ylabel.attr("class", "y_label")
+    .attr("x", -height/2-padding/2)
+    .attr("y", padding/2-10)
+    .text(yLabel)
+    .attr("text-anchor", "middle")
+    .attr("transform", "rotate(-90)");
+}
+
 $(document).ready(function() {
   var svg = d3.select("svg.explore_data");
   var testData = [
-      [.1,  .001, 4,   4],
-      [1,   2200,    3,   4],
-      [1,   3,    2,   3],
+      [.1,  .001, 4,    4],
+      [1,   2200,    3, 4],
+      [1,   3,    2,    3],
       [1,   4,    .1,   3],
-      [20,  1,    1,   2],
-      [300, 4,    1,   2],
-      [.3,  3.5,  1,   3],
-      [1,   22,   300, 5]
+      [20,  1,    1,    2],
+      [300, 4,    1,    2],
+      [.3,  3.5,  1,    3],
+      [1,   22,   300,  5]
   ];
   var ret = make_graph(svg, testData, [0, 1]);
   var points = ret[0];
@@ -119,7 +148,12 @@ $(document).ready(function() {
   var gxAxis = ret[3];
   var gyAxis = ret[4];
   
+  labels = ["Energy Density (W/kg)",
+    "Something else (asdf)",
+    "Mass (kg",
+    "Why do you ask??"];
+  set_labels(svg, labels[0], labels[1]);
   d3.selectAll(".point").on("click", function(d) {
-    update(testData, points, [xAxis, yAxis], [gxAxis, gyAxis], [1, 2]);
+    update(svg, testData, labels, points, [xAxis, yAxis], [gxAxis, gyAxis], [1, 2]);
   });
 });
