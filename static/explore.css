@@ -20,6 +20,20 @@ svg .point {
   spake-rendering: crispEdges;
 }
 
-svg {
-  border: 2px black solid;
+div.axis.select {
+  background-color: gray;
+  padding-top: 25px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+div.axis.select span {
+  margin: 45px;
+}
+
+
+span .dropdown {
+  margin: 0px 30px;
+  border-radius: 3px;
+  border: none;
 }
