@@ -2,6 +2,11 @@ svg .axis {
     stroke: black;
 }
 
+svg .button{
+    stroke:black;
+    fill:teal;
+}
+
 svg .polygon{
     stroke:black;
     fill:teal;
