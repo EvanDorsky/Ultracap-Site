@@ -26,13 +26,15 @@ function graphGen (data, scales) {
         return w/2+scale(d)*Math.sin(theta);
     })
     .interpolate("linear");
-
     return polygonLine(data);
 }
 
 // Returns an array of axes, one for each row
-function axesGen (data, scales) {
+function test (sender) {
+    // alert("clicked");
 
+    sender.transition()
+    .style("opacity", 0.1);
 }
 
 var polygon;
@@ -48,7 +50,7 @@ d3.csv("/static/TestData.csv", function(data) {
         subArray = [];
         var j = 0;
         for (var key in entry) {
-            if (j>6) {
+            if (j>5) {
                 subArray.push(entry[key]);
             }
             j++;
@@ -84,12 +86,22 @@ d3.csv("/static/TestData.csv", function(data) {
     }
     
 //THEN DO POLYGON
+    // This array stores all the polygons for later use
+    var polygons = [];
     // Make a polygon for each row
     for (var i = 0; i < dataArray.length; i++) {
         polygon = svgContainer.append("path")
         .attr("d", graphGen(dataArray[i], scales) + "Z")
-        .attr("class", "polygon")
-        .attr("fill-opacity", 0.5);
+        .classed("polygon", true)
+        .attr("fill-opacity", 0.5)
+        .attr("index", i);
+
+        polygon.on("click", function() {
+            d3.select(this).transition()
+            .style("fill", "blue");
+        });
+
+        polygons.push(polygon);
     }
 // THEN DO AXES
     // generate them
@@ -100,6 +112,7 @@ d3.csv("/static/TestData.csv", function(data) {
         var theta = 2*Math.PI*j/subArray.length;
         var endPointx = w/2+axisLength*Math.cos(theta);
         var endPointy = w/2+axisLength*Math.sin(theta);
+
         svgContainer.append("line")
         .attr("x1", w/2)
         .attr("y1", w/2)
@@ -107,6 +120,42 @@ d3.csv("/static/TestData.csv", function(data) {
         .attr("y2", endPointy)
         .style("stroke", "black");
     }
+
+// THEN MAKE BUTTONS
+for (var i = 0; i < subArray.length; i++) {
+    svgContainer.append("circle")
+    .attr("cx", function(d) {
+        return (i+1)*60;
+    })
+    .attr("cy", function(d) {
+        return w-40;
+    })
+    .attr("fill-opacity", 0.5)
+    .attr("class", "button")
+    .attr("r", 20)
+    .attr("index", i)
+    .on("click", function() {
+        var index = d3.select(this).attr("index");
+        var gon = d3.select(".polygon:nth-child("+index+")");
+
+        // I'd like this to work but it's not
+        // And the current way works
+        // var gon = d3.selectAll('[index='+ index + ']');
+
+        // Hide/show the corresponding polygon
+        gon.transition()
+        .style("opacity", function() {
+            var innergon = d3.select(".polygon:nth-child("+index+")");
+            return innergon.style("opacity") == 0 ? 1 : 0;
+        });
+
+        d3.select(this).transition()
+        .attr("fill-opacity", function() {
+            return d3.select(this).attr("fill-opacity") == 0 ? 0.5  : 0;
+        });
+    });
+}
+
 });
 //end d3 CSV call
 
