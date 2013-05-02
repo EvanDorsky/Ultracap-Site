@@ -46,8 +46,11 @@ body{
 good form to use not([switch=on]) because switch attribute isn't
 set on load
 */
-#sidebar .sbitem:not([switch=on]):switch{
-    background-color:#505050;
+#sidebar .sbitem:not([switch=on]):hover{
+    background-color:#474747;
+}
+#sidebar .sbitem[switch=on]:hover{
+    background-color:#606060;
 }
 
 #contentbox{
