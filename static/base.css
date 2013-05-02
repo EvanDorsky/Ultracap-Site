@@ -38,6 +38,18 @@ body{
     width:140px;
 }
 
+#sidebar .sbitem[switch=on]{
+    background-color:#808080;
+}
+
+/*
+good form to use not([switch=on]) because switch attribute isn't
+set on load
+*/
+#sidebar .sbitem:not([switch=on]):switch{
+    background-color:#505050;
+}
+
 #contentbox{
     position:absolute;
     top:100px;
