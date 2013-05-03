@@ -39,7 +39,7 @@ function test (sender) {
 
 var polygon;
 
-var startIndex = 5;
+var startIndex = 6;
 
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
 // Everything has to happen here because CSV is asynchronous
@@ -103,11 +103,8 @@ d3.csv("/static/TestData.csv", function(data) {
         .attr("fill-opacity", 0.3)
         .attr("index", i)
         .attr("fill", data[i]['Color'])
-        // .on("click", function() {
-        //     d3.select(this).transition()
-        //     .style("fill", "blue");
-        // })
-;
+        .style("stroke", data[i]['Color']);
+        ;
 
         polygons.push(polygon);
     }
@@ -164,11 +161,12 @@ for (var i = 0; i < dataArray.length; i++) {
     .attr("cy", function(d) {
         return w-buttonDiameter;
     })
-    .attr("fill-opacity", 0.5)
+    .attr("fill-opacity", 0.4)
     .attr("class", "button")
     .attr("r", buttonDiameter/2)
     .attr("index", i)
     .attr("fill", data[i]['Color'])
+    .style("stroke", data[i]['Color'])
     .on("click", function() {
         var index = parseInt(d3.select(this).attr("index"))+1;
         var gon = d3.select(".polygon:nth-child("+index+")");
