@@ -39,6 +39,8 @@ function test (sender) {
 
 var polygon;
 
+var startIndex = 5;
+
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
 // Everything has to happen here because CSV is asynchronous
 // Nothing after this call will have access to any variables assigned here
@@ -46,17 +48,20 @@ d3.csv("/static/TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
     for (var i = 0; i < data.length; i++) {
-        var entry = data[i];
-        subArray = [];
-        var j = 0;
-        for (var key in entry) {
-            if (j>5) {
+        if (i!=4) {
+            var entry = data[i];
+            subArray = [];
+            var j = 0;
+            for (var key in entry) {
+                if (j>startIndex && j<11) {
+                // alert(j);
                 subArray.push(entry[key]);
             }
             j++;
         }
         dataArray.push(subArray);
     }
+}
 //FIRST DO SCALES
     // First set up the empty array
     var sortedData = [];
@@ -68,6 +73,7 @@ d3.csv("/static/TestData.csv", function(data) {
     for (var i = 0; i < dataArray.length; i++) {
         for (var j = 0; j < dataArray[i].length; j++) {
             sortedData[j][i] = parseFloat(dataArray[i][j]);
+            //This is important; it makes everything numbers
         }
     }
     console.log(sortedData);
@@ -80,7 +86,7 @@ d3.csv("/static/TestData.csv", function(data) {
         // .domain([0, d3.max(sortedData[i])])
         // .range([0, w/2]);
         var axisScale = d3.scale.log()
-        .domain([d3.min(sortedData[i]), d3.max(sortedData[i])])
+        .domain([d3.min(sortedData[i])-d3.min(sortedData[i])/2, d3.max(sortedData[i])])
         .range([0, w/2-padding]);
         scales.push(axisScale);
     }
@@ -89,17 +95,19 @@ d3.csv("/static/TestData.csv", function(data) {
     // This array stores all the polygons for later use
     var polygons = [];
     // Make a polygon for each row
+
     for (var i = 0; i < dataArray.length; i++) {
         polygon = svgContainer.append("path")
         .attr("d", graphGen(dataArray[i], scales) + "Z")
         .classed("polygon", true)
-        .attr("fill-opacity", 0.5)
-        .attr("index", i);
-
-        polygon.on("click", function() {
-            d3.select(this).transition()
-            .style("fill", "blue");
-        });
+        .attr("fill-opacity", 0.3)
+        .attr("index", i)
+        .attr("fill", data[i]['Color'])
+        // .on("click", function() {
+        //     d3.select(this).transition()
+        //     .style("fill", "blue");
+        // })
+;
 
         polygons.push(polygon);
     }
@@ -121,21 +129,48 @@ d3.csv("/static/TestData.csv", function(data) {
         .style("stroke", "black");
     }
 
+// THEN DO TEXT LABELS
+var texts = [];
+var k = 0;
+var l = 0;
+
+for (var key in data[1]) {
+    if (k>startIndex) {
+        texts[l]=key;
+        l++;
+    }
+    k++;
+}
+
+var theta;
+for (var j = 0; j < subArray.length; j++) {
+    theta = 360*j/subArray.length;
+    svgContainer
+    .append("text")
+    .attr("x", w/2+40)
+    .attr("y", w/2-6)
+    .text(texts[j])
+    .attr("transform", "rotate("+theta+", "+w/2+","+w/2+")");
+    // .attr("transform", "rotate(90, 250, 250)");
+}
+
 // THEN MAKE BUTTONS
-for (var i = 0; i < subArray.length; i++) {
+var buttonDiameter = w / (dataArray.length);
+for (var i = 0; i < dataArray.length; i++) {
     svgContainer.append("circle")
     .attr("cx", function(d) {
-        return (i+1)*60;
+        return buttonDiameter/2+(i)*buttonDiameter;
     })
     .attr("cy", function(d) {
-        return w-40;
+        return w-buttonDiameter;
     })
     .attr("fill-opacity", 0.5)
     .attr("class", "button")
-    .attr("r", 20)
+    .attr("r", buttonDiameter/2)
     .attr("index", i)
+    .attr("fill", data[i]['Color'])
     .on("click", function() {
-        var index = d3.select(this).attr("index");
+        var index = parseInt(d3.select(this).attr("index"))+1;
         var gon = d3.select(".polygon:nth-child("+index+")");
 
         // I'd like this to work but it's not
