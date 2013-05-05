@@ -193,7 +193,7 @@ for (var i = 0; i < dataArray.length; i++) {
         });
 
         //recalculate scales based on the visible data
-        var [] = dataForScaling;
+        var dataForScaling = [];
         for (var i = 0; i < dataArray.length; i++) {
             dataForScaling.push([]);
         }
