@@ -21,6 +21,9 @@
 	<div class="container">
 	  <div class="spacer"></div>
 	  <a class="navitem"
+	     {% if place == 'home' %}id="active"{% endif %}
+	     href="/home/">Intro</a>
+	  <a class="navitem"
 	     {% if place == 'compare' %}id="active"{% endif %}
 	     href="/compare/">See the Breakdown</a>
 	  <a class="navitem"
