@@ -29,6 +29,20 @@ function graphGen (data, scales) {
     return polygonLine(data);
 }
 
+function calcScales (scaleData) {
+    var scales = [];
+    for (var i = 0; i < scaleData.length; i++) {
+        // var axisScale = d3.scale.linear()
+        // .domain([0, d3.max(sortedData[i])])
+        // .range([0, w/2]);
+        var axisScale = d3.scale.log()
+        .domain([d3.min(scaleData[i])-d3.min(scaleData[i])/2, d3.max(scaleData[i])])
+        .range([0, w/2-padding]);
+        scales.push(axisScale);
+    }
+    return scales;
+}
+
 // Returns an array of axes, one for each row
 function test (sender) {
     // alert("clicked");
@@ -80,16 +94,7 @@ d3.csv("/static/TestData.csv", function(data) {
 
     // Then create the scales and append the axes
     // A scale for each row finding the max in the row
-    var scales = [];
-    for (var i = 0; i < sortedData.length; i++) {
-        // var axisScale = d3.scale.linear()
-        // .domain([0, d3.max(sortedData[i])])
-        // .range([0, w/2]);
-        var axisScale = d3.scale.log()
-        .domain([d3.min(sortedData[i])-d3.min(sortedData[i])/2, d3.max(sortedData[i])])
-        .range([0, w/2-padding]);
-        scales.push(axisScale);
-    }
+    var scales = calcScales(sortedData);
     
 //THEN DO POLYGON
     // This array stores all the polygons for later use
@@ -186,6 +191,22 @@ for (var i = 0; i < dataArray.length; i++) {
         .attr("fill-opacity", function() {
             return d3.select(this).attr("fill-opacity") == 0 ? 0.5  : 0;
         });
+
+        //recalculate scales based on the visible data
+        var [] = dataForScaling;
+        for (var i = 0; i < dataArray.length; i++) {
+            dataForScaling.push([]);
+        }
+
+        for (var i = 0; i < dataArray.length; i++) {
+            for (var j = 0; j < dataArray[i].length; j++) {
+                var innergon = d3.select(".polygon:nth-child("+index+")");
+                if (d3.select(this).attr("fill-opacity") != 0) {
+                    dataForScaling[i].push(dataArray[i][j]);
+                }
+            }
+        }
+        var newScales = calcScales(dataForScaling);
     });
 }
 
