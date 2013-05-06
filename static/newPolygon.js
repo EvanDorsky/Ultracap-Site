@@ -5,7 +5,6 @@ $(document).ready(function() {
 // Define an SVG with width and height, and place it in the body
 var svgContainer = d3.select("svg.energy_sources");
 var w = parseFloat(svgContainer.style("width"));
-alert(w);
 // Defines the the polygon for the graph
 // based on the input data
 function graphGen (data, scales) {
