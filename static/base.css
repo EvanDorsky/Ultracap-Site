@@ -109,3 +109,19 @@ set on load
 .hide{
     display:none;
 }
+
+svg.energy_sources{
+   width:100%;
+}
+
+.svgstuff{
+    float:left;
+    width:49%;
+}
+
+.infostuff{
+    float:right;
+    width:49%;
+    height:100%;
+    overflow:scroll;
+}

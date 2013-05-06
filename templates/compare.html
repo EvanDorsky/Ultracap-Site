@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block scripts %}
 <script type="text/javascript" src="/static/newPolygon.js"></script>
+<script type="text/javascript" src="/static/breakdown.js"></script>
 <link rel="stylesheet" type="text/css" href="/static/polygon.css">
 {% endblock %}
 
@@ -8,197 +9,212 @@
 Energy Sources
 {% endblock %}
 
-{% block content %}
-<svg class=energy_sources width=500 height=500> </svg>
-<div class="" link="Graphene"> 
-  <h4>Graphene Ultracapacitors</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>Graphene ultracapacitors are...</dd>
-    <dt>Pros</dt>
-    <dd>
-      Relatively energy dense, very power dense, long lifespan, made from sustainable ingredients (carbon).
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Only exist in research labs, expensive to produce.
-    </dd>
-    <dt>Takeaway</dt>
-    <dd>
-      Their combination of high power density, reasonable energy density, and long life make them well suited for a wide variety of applications ranging from consumer electronics due to there high energy content and quick charging rate to regenerative braking due to their efficiency and ability provide and store large amounts of power.
-    </dd>
-    <dt> Sources </dt>
-    <dd> 
-  </dl>
-</div>
-<div class="" link="Cells">
-  <h4>Fuel cells</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>
-      Most fuel cells work by oxidizing a fuel like hydrogen, taking advantage of the electrical current generated in the process. Thus the byproduct of the chemical reaction is often simply water.
-    </dd>
-    <dt>Pros</dt>
-    <dd>
-      More energy dense than batteries, fuel is renewable not dependent on natural resources, nonpolluting, low maintenance, silent and safe, high electrical efficiency of 60-70% (3x internal combustion engines)
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Too expensive and low power/ and low lifetime to compete with gas/combustion engines today, low durability (gas impurities and pulse demands shorten cell life), low power density by volume (10-100x less than combustion engines), does not allow bidirectional energy flow (no regen), slow start-up/power response/acceleration
-    </dd>
-    <dt>Takeaway</dt>
-    <dd>
-      Are being worked to replace batteries, ideal when an electrical supply is required, will be more commercially important when they can be manufactured more cheaply. It is better used as a steady source of energy and not a dynamic one: good in conjunction with a battery or ultracap to provide steady energy
-    </dd>
-  </dl>
-</div>
-<div class="" link="Ultracaps">
-  <h4>Activated Carbon Ultracaps</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>
-      Ultracapacitors, like capacitors, generate energy through the buildup of opposing charges on the two capacitor plates. Ultracapacitors can have extremely high capacitances by increasing the surface area of the plates, which is done by coating the plates with activated carbon, which is spongy and porous. They are also called electrical double layer capacitors because each carbon electrode has two layers of charge coating its surface.
-    </dd>
-    <dt>Pros</dt>
-    <dd>
-      High power density, low internal resistance, much higher capacitance than a normal capacitor, more efficient than batteries, long life, more environmentally friendly than batteries
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Relatively low energy density, low voltage means that ultracaps have to be used in series to have the voltage of a battery, unsteady voltage because it drops as an ultracap discharges, fire hazard if the circuit shorts due to low internal resistance, trying to increase voltage/energy is expensive and leads to reduced power
-    </dd>
-    <dt>Takeaway</dt>
-    <dd>
-      Their power density makes them great at meeting surge power demands on hybrid vehicles. When further developed, they may be able to store as much energy as batteries.
-    </dd>
-    <dt> Sources </dt>
-    <dd> http://ucs.berkeley.edu/energy/2012/06/energystor/ultracapacitors/ </dd>
-  </dl>
-</div>
-<div class="" link="Gas">
-  <h4>Gasoline</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd></dd>
-    <dt>Pros</dt>
-    <dd></dd>
-    <dt>Cons</dt>
-    <dd></dd>
-    <dt>Takeaway</dt>
-    <dd></dd>
-</div>
-<div class="" link="Batteries">
-  <h4>Batteries in general</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>
-      Batteries convert chemical energy into electrical energy. These devices are formed by sandwiching an electorate with a conductive anode and cathode. This creates a flow in electrons, creating electricity. When charging the cell, the reaction is reversed.
-    </dd>
-    <dt>Pros</dt>
-    <dd>
-      Instant power. No hassle. Easy to use and variable in size, temp, chemical system, orientation. Can provide pulses of high current
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Power discharge must be regulated to ensure health. Charging takes multiple hours. Low lifetime. Low energy content and expensive in comparison to traditional fuels
-    </dd>
-    <dt>Takeaway</dt>
-    <dd></dd>
-    <dt> Sources </dt>
-    <dd> http://www.apta.com/mc/rail/previous/2010/Papers/Everything-You-Wanted-To-Know-About-Energy-Storage-But-Were-Afraid-To-Ask.pdf </dd>
+{% block sidebar %}
+<div class="sbitem" link="Graphene">Graphene Ultracaps</div>
+<div class="sbitem" link="Cells">Fuel Cells</div>
+<div class="sbitem" link="Ultracaps">Activated Carbon Ultracaps</div>
+<div class="sbitem" link="Gas">Gasoline</div>
+<div class="sbitem" link="Lion">Lithium Ion</div>
+<div class="sbitem" link="Lead">Lead Acid</div>
+<div class="sbitem" link="water">Pumped Water</div>
+<div class="sbitem" link="Fly">Fly Wheels</div>
+{% endblock %}
 
+{% block content %}
+<div class="svgstuff">
+  <svg class=energy_sources> </svg>
 </div>
-<div class="" link="Lion">
-  <h4>Lithium ion</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>Lithium ion batteries, much like all other battery technologies, have an anode, a cathode and an electrolyte. The anode of the battery is made of Lithium cobalt oxide,  and the cathode is made of carbon. Li+ ions travel through the ion porous membrane and collect on the cathode when powering and reverses when charging.</dd>
-    <dt>Pros</dt>
-    <dd>
-      Good at its job. High energy density and lighter than many other kinds, like the nickel metal hydride cell. Often rechargeable.
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Risk of explosions and fires. Expensive. Lithium hard to mine and bad for environment.
-    </dd>
-    <dt>Takeaway</dt>
-    <dd>
-      Currently used in all modern electronic devices. Goto for high quality batteries. Widely used for portable electronics
-    </dd>
-    <dt> Sources </dt>
-    <dd>
-      http://electronics.howstuffworks.com/everyday-tech/lithium-ion-battery1.htm
-    </dd>
-  </dl>
-</div>
-<div class="" link="Lead">
-  <h4>Lead Acid</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd></dd>
-    <dt>Pros</dt>
-    <dd>
-      Easy to make. Reliable. Can store energy for a long period of time. Can supply very high surge currents. Cheap and has established recycling processes resulting in 98% of US lead acid batteries being recycled.
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Lead is a toxic metal. Acids are dangerous. These batteries don't store energy very well.
-    </dd>
-    <dt>Takeaway</dt>
-    <dd>
-      Lead Acid batteries are mainly used in automobiles because of their ability to supply high current for the spark plugs while holding their charge for long periods of time to power minor systems. Their low energy density, high weight, and dangerous chemicals keep them out of most consumer devices.
-    </dd>
-    <dt> Sources </dt>
-    <dd>  http://www.chem.hawaii.edu/uham/bat.html </dd>
-    <dd> http://www.carsdirect.com/car-maintenance/pros-and-cons-of-a-lead-acid-car-battery </dd>
-  </dl>
-</div>
-<div class="" link="water">
-  <h4>Pumped water storage</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>This system uses gravity to store energy. Water is pumped up a hill to a reservoir where it is stored for future use. To obtain power, this water is released and run through a generator.
-    </dd>
-    <dt>Pros</dt>
-    <dd>
-      Very efficient (up to 75%)
-      Good for high energy amounts
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Energy is not instantaneously available
-    </dd>
-    <dt>Takeaway</dt>
-    <dd>
-      great for powerplants. Used in powerplants already.
-      Ultra large scale needed.
-    </dd>
-    <dt> Sources </dt>
-    <dd>  http://www.triplepundit.com/2013/02/energy-storage-systems-pros-cons/ </dd>
-  </dl>
-</div>
-<div class="" link="Fly">
-  <h4>Fly wheels</h4>
-  <dl>
-    <dt>What They Are</dt>
-    <dd>
-      This device stores energy in the angular momentum of a spinning wheel. The assembly is done in a vacuum using high quality magnetic bearings to increase efficiency.
-    </dd>
-    <dt>Pros</dt>
-    <dd>
-      Very efficient (up to 90%)
-      Extremely environ friendly
-      Not temperature sensative
-    </dd>
-    <dt>Cons</dt>
-    <dd>
-      Over charge results in catastrophe.
-      Hard to make completely frictionless.
-    </dd>
-    <dt>Takeaway</dt>
-    <dd></dd>
-    <dt> Sources </dt>
-    <dd> http://advantage-environment.com/framtid/energy-storage-with-flywheel-technology/ </dd>
-  </dl>
+<div class="infostuff">
+  <div class="" link="Graphene"> 
+    <h4>Graphene Ultracapacitors</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>Graphene ultracapacitors are...</dd>
+      <dt>Pros</dt>
+      <dd>
+	Relatively energy dense, very power dense, long lifespan, made from sustainable ingredients (carbon).
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Only exist in research labs, expensive to produce.
+      </dd>
+      <dt>Takeaway</dt>
+      <dd>
+	Their combination of high power density, reasonable energy density, and long life make them well suited for a wide variety of applications ranging from consumer electronics due to there high energy content and quick charging rate to regenerative braking due to their efficiency and ability provide and store large amounts of power.
+      </dd>
+      <dt> Sources </dt>
+      <dd> 
+    </dl>
+  </div>
+  <div class="" link="Cells">
+    <h4>Fuel cells</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>
+	Most fuel cells work by oxidizing a fuel like hydrogen, taking advantage of the electrical current generated in the process. Thus the byproduct of the chemical reaction is often simply water.
+      </dd>
+      <dt>Pros</dt>
+      <dd>
+	More energy dense than batteries, fuel is renewable not dependent on natural resources, nonpolluting, low maintenance, silent and safe, high electrical efficiency of 60-70% (3x internal combustion engines)
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Too expensive and low power/ and low lifetime to compete with gas/combustion engines today, low durability (gas impurities and pulse demands shorten cell life), low power density by volume (10-100x less than combustion engines), does not allow bidirectional energy flow (no regen), slow start-up/power response/acceleration
+      </dd>
+      <dt>Takeaway</dt>
+      <dd>
+	Are being worked to replace batteries, ideal when an electrical supply is required, will be more commercially important when they can be manufactured more cheaply. It is better used as a steady source of energy and not a dynamic one: good in conjunction with a battery or ultracap to provide steady energy
+      </dd>
+    </dl>
+  </div>
+  <div class="" link="Ultracaps">
+    <h4>Activated Carbon Ultracaps</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>
+	Ultracapacitors, like capacitors, generate energy through the buildup of opposing charges on the two capacitor plates. Ultracapacitors can have extremely high capacitances by increasing the surface area of the plates, which is done by coating the plates with activated carbon, which is spongy and porous. They are also called electrical double layer capacitors because each carbon electrode has two layers of charge coating its surface.
+      </dd>
+      <dt>Pros</dt>
+      <dd>
+	High power density, low internal resistance, much higher capacitance than a normal capacitor, more efficient than batteries, long life, more environmentally friendly than batteries
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Relatively low energy density, low voltage means that ultracaps have to be used in series to have the voltage of a battery, unsteady voltage because it drops as an ultracap discharges, fire hazard if the circuit shorts due to low internal resistance, trying to increase voltage/energy is expensive and leads to reduced power
+      </dd>
+      <dt>Takeaway</dt>
+      <dd>
+	Their power density makes them great at meeting surge power demands on hybrid vehicles. When further developed, they may be able to store as much energy as batteries.
+      </dd>
+      <dt> Sources </dt>
+      <dd> http://ucs.berkeley.edu/energy/2012/06/energystor/ultracapacitors/ </dd>
+    </dl>
+  </div>
+  <div class="" link="Gas">
+    <h4>Gasoline</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd></dd>
+      <dt>Pros</dt>
+      <dd></dd>
+      <dt>Cons</dt>
+      <dd></dd>
+      <dt>Takeaway</dt>
+      <dd></dd>
+  </div>
+  <div class="" link="Batteries">
+    <h4>Batteries in general</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>
+	Batteries convert chemical energy into electrical energy. These devices are formed by sandwiching an electorate with a conductive anode and cathode. This creates a flow in electrons, creating electricity. When charging the cell, the reaction is reversed.
+      </dd>
+      <dt>Pros</dt>
+      <dd>
+	Instant power. No hassle. Easy to use and variable in size, temp, chemical system, orientation. Can provide pulses of high current
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Power discharge must be regulated to ensure health. Charging takes multiple hours. Low lifetime. Low energy content and expensive in comparison to traditional fuels
+      </dd>
+      <dt>Takeaway</dt>
+      <dd></dd>
+      <dt> Sources </dt>
+      <dd> http://www.apta.com/mc/rail/previous/2010/Papers/Everything-You-Wanted-To-Know-About-Energy-Storage-But-Were-Afraid-To-Ask.pdf </dd>
+
+  </div>
+  <div class="" link="Lion">
+    <h4>Lithium ion</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>Lithium ion batteries, much like all other battery technologies, have an anode, a cathode and an electrolyte. The anode of the battery is made of Lithium cobalt oxide,  and the cathode is made of carbon. Li+ ions travel through the ion porous membrane and collect on the cathode when powering and reverses when charging.</dd>
+      <dt>Pros</dt>
+      <dd>
+	Good at its job. High energy density and lighter than many other kinds, like the nickel metal hydride cell. Often rechargeable.
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Risk of explosions and fires. Expensive. Lithium hard to mine and bad for environment.
+      </dd>
+      <dt>Takeaway</dt>
+      <dd>
+	Currently used in all modern electronic devices. Goto for high quality batteries. Widely used for portable electronics
+      </dd>
+      <dt> Sources </dt>
+      <dd>
+	http://electronics.howstuffworks.com/everyday-tech/lithium-ion-battery1.htm
+      </dd>
+    </dl>
+  </div>
+  <div class="" link="Lead">
+    <h4>Lead Acid</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd></dd>
+      <dt>Pros</dt>
+      <dd>
+	Easy to make. Reliable. Can store energy for a long period of time. Can supply very high surge currents. Cheap and has established recycling processes resulting in 98% of US lead acid batteries being recycled.
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Lead is a toxic metal. Acids are dangerous. These batteries don't store energy very well.
+      </dd>
+      <dt>Takeaway</dt>
+      <dd>
+	Lead Acid batteries are mainly used in automobiles because of their ability to supply high current for the spark plugs while holding their charge for long periods of time to power minor systems. Their low energy density, high weight, and dangerous chemicals keep them out of most consumer devices.
+      </dd>
+      <dt> Sources </dt>
+      <dd>  http://www.chem.hawaii.edu/uham/bat.html </dd>
+      <dd> http://www.carsdirect.com/car-maintenance/pros-and-cons-of-a-lead-acid-car-battery </dd>
+    </dl>
+  </div>
+  <div class="" link="water">
+    <h4>Pumped water storage</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>This system uses gravity to store energy. Water is pumped up a hill to a reservoir where it is stored for future use. To obtain power, this water is released and run through a generator.
+      </dd>
+      <dt>Pros</dt>
+      <dd>
+	Very efficient (up to 75%)
+	Good for high energy amounts
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Energy is not instantaneously available
+      </dd>
+      <dt>Takeaway</dt>
+      <dd>
+	great for powerplants. Used in powerplants already.
+	Ultra large scale needed.
+      </dd>
+      <dt> Sources </dt>
+      <dd>  http://www.triplepundit.com/2013/02/energy-storage-systems-pros-cons/ </dd>
+    </dl>
+  </div>
+  <div class="" link="Fly">
+    <h4>Fly wheels</h4>
+    <dl>
+      <dt>What They Are</dt>
+      <dd>
+	This device stores energy in the angular momentum of a spinning wheel. The assembly is done in a vacuum using high quality magnetic bearings to increase efficiency.
+      </dd>
+      <dt>Pros</dt>
+      <dd>
+	Very efficient (up to 90%)
+	Extremely environ friendly
+	Not temperature sensative
+      </dd>
+      <dt>Cons</dt>
+      <dd>
+	Over charge results in catastrophe.
+	Hard to make completely frictionless.
+      </dd>
+      <dt>Takeaway</dt>
+      <dd></dd>
+      <dt> Sources </dt>
+      <dd> http://advantage-environment.com/framtid/energy-storage-with-flywheel-technology/ </dd>
+    </dl>
+  </div>
 </div>
 {% endblock %}
