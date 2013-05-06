@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    var w = 500;
     var padding = 20;
     var h = 500;
 
 // Define an SVG with width and height, and place it in the body
-var svgContainer = d3.select("svg.energy_sources")
-
+var svgContainer = d3.select("svg.energy_sources");
+var w = parseFloat(svgContainer.style("width"));
+alert(w);
 // Defines the the polygon for the graph
 // based on the input data
 function graphGen (data, scales) {
@@ -109,7 +109,6 @@ d3.csv("/static/TestData.csv", function(data) {
         .attr("index", i)
         .attr("fill", data[i]['Color'])
         .style("stroke", data[i]['Color']);
-        ;
 
         polygons.push(polygon);
     }
@@ -173,17 +172,15 @@ for (var i = 0; i < dataArray.length; i++) {
     .attr("fill", data[i]['Color'])
     .style("stroke", data[i]['Color'])
     .on("click", function() {
-        var index = parseInt(d3.select(this).attr("index"))+1;
-        var gon = d3.select(".polygon:nth-child("+index+")");
+        var index = parseInt(d3.select(this).attr("index"));
+        //index of the selected polygon
 
-        // I'd like this to work but it's not
-        // And the current way works
-        // var gon = d3.selectAll('[index='+ index + ']');
+        var gon = d3.select('[index="'+ index + '"]');
 
         // Hide/show the corresponding polygon
         gon.transition()
         .style("opacity", function() {
-            var innergon = d3.select(".polygon:nth-child("+index+")");
+            var innergon = d3.select('[index="'+ index + '"]');
             return innergon.style("opacity") == 0 ? 1 : 0;
         });
 
@@ -200,13 +197,20 @@ for (var i = 0; i < dataArray.length; i++) {
 
         for (var i = 0; i < dataArray.length; i++) {
             for (var j = 0; j < dataArray[i].length; j++) {
-                var innergon = d3.select(".polygon:nth-child("+index+")");
-                if (d3.select(this).attr("fill-opacity") != 0) {
+                var eachIndex = i+1;
+                var innergon = d3.select('[index="'+ i + '"]')
+                if (innergon.attr("fill-opacity") != 0) {
                     dataForScaling[i].push(dataArray[i][j]);
                 }
             }
         }
         var newScales = calcScales(dataForScaling);
+
+        for (var i = 0; i < dataForScaling.length; i++) {
+            var innergon = d3.select('[index="'+ i + '"]');
+            var newPolyline = graphGen(dataForScaling[i], newScales);
+            innergon.transition.attr("d", newPolyline + "Z");
+        }
     });
 }
 
