@@ -33,9 +33,7 @@ $(document).ready(function(){
 
 function sizeUp(){
     var cheight = $(window).height() - $('#contentbox').offset().top - 45;
-    var iheight = cheight - $('#contentbox').attr('padding') * 2;
     $('#contentbox').height(cheight);
-    $('.infostuff').height(iheight);
 }
 
 $(document).ready(function(){

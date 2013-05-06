@@ -60,6 +60,7 @@ set on load
     width:740px;
     padding:20px;
     background-color:#e0e0e0;
+    overflow:auto;
 }
 
 .header h1{
@@ -123,5 +124,5 @@ svg.energy_sources{
     float:right;
     width:49%;
     height:100%;
-    overflow:scroll;
+    overflow:auto;
 }

@@ -12,6 +12,7 @@ function callOff(me){
 }
 
 $(document).ready(function(){
+    $('#contentbox').css('overflow','hidden');
     sel = d3.selectAll('.sbitem');
     toggle(sel, callOn, callOff);
 });

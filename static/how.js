@@ -1,13 +1,12 @@
 function toggleOn(me){
     link = d3.select(me).attr('link');
-    sel = d3.selectAll('[link='+ link + ']').classed('hide', false);
-}
-
-function toggleOff(me){
-    link = d3.select(me).attr('link');
-    sel = d3.selectAll('[link='+ link +']:not(.sbitem)').classed('hide', true);
+    $('#contentbox').animate({
+        scrollTop: $("div[link=" + link + "]:not(.sbitem)").offset().top -
+	    $("#contentbox").offset().top + $("#contentbox").scrollTop()
+    }, 500);
+    d3.select(me).attr('switch', 'off');
 }
 
 $(document).ready(function(){
-    toggle(d3.selectAll('.sbitem'), toggleOn, toggleOff);
+    toggle(d3.selectAll('.sbitem'), toggleOn);
 });
