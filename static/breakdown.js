@@ -23,10 +23,11 @@ function callOff(me){
 
 $(document).ready(function(){
 	d3.csv('/static/TestData.csv', function(data) {
-   		sel = d3.selectAll('.sbitem').attr("switch", "on").data(data)
+   		sel = d3.selectAll('.sbitem').attr("switch", "off").data(data)
    		.style("color", function(d) {
    			return d['Color'];
    		});
+      d3.selectAll('.polygon').style("opacity", 0);
    		//color the buttons
     	toggle(sel, callOn, callOff);
 	});
