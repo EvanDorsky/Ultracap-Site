@@ -1,4 +1,4 @@
-Type,Energy Density (J/g),Power Density (W/g),Charge Speed (1/h),Lifetime Cycles,Value (KJ/$),Sustainability,Color,Link
+Type,Energy Density (J/g),Power Density (W/g),Charge Speed (1/h),Lifetime Cycles,Kilojoules per Dollar,Sustainability,Color,Link
 Carbon Ultracapacitors,8.34364399,71.81533694,3599.99712,500000,0.000958539,6,#224477,Ultracaps
 Graphene Ultra,308.16,2.7,100000,1000000,0.0001,5,#555555,Graphene
 Lithium Ion,768.7,0.236,0.25,700,7.659574442,2,#aa0000,Lion
