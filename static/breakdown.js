@@ -22,8 +22,16 @@ function callOff(me){
 }
 
 $(document).ready(function(){
-    sel = d3.selectAll('.sbitem');
+    sel = d3.selectAll('.sbitem').attr("switch", "on");
     toggle(sel, callOn, callOff);
+    for (element in sel) {
+    	alert(element);
+    }
 
-    
+    // var polygons = d3.selectAll('.polygon');
+    // for (gon in polygons) {
+    // 	if (gon.attr("link")!="Lion"||gon.attr("link")!="Graphene") {
+    // 		gon.style("opacity", 0);
+    // 	}
+    // }
 });
