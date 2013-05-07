@@ -208,7 +208,7 @@ $(document).ready(function() {
 
   d3.selectAll(".point").on("click", function(d, i) {
     //console.log(d)
-    d3.select(".selectedItem").html(d[8]);
+    d3.select(".selectedItem").html("You selected: <b>" + d[8]+ "</b>");
   });
 
   d3.selectAll("select.dropdown").on("change", function(d, i) {
