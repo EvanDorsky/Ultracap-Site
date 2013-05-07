@@ -4,6 +4,21 @@ body{
     font-family: "Oxygen";
 }
 
+#sidebar a{
+    color:#aaccff;
+}
+
+#sidebar a:visited{
+    color:#aaccff;
+}
+
+#contentbox a{
+    color:#002255;
+}
+#contentbox a:visited{
+    color:#002255;
+}
+
 .header{
     opacity:0.9;
     position:absolute;
@@ -39,7 +54,8 @@ body{
 }
 
 #sidebar .sbitem[switch=on]{
-    background-color:#808080;
+    opacity:0.8;
+    background-color:#dddddd;
 }
 
 /*

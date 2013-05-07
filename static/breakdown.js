@@ -22,16 +22,13 @@ function callOff(me){
 }
 
 $(document).ready(function(){
-    sel = d3.selectAll('.sbitem').attr("switch", "on");
-    toggle(sel, callOn, callOff);
-    for (element in sel) {
-    	alert(element);
-    }
-
-    // var polygons = d3.selectAll('.polygon');
-    // for (gon in polygons) {
-    // 	if (gon.attr("link")!="Lion"||gon.attr("link")!="Graphene") {
-    // 		gon.style("opacity", 0);
-    // 	}
-    // }
+	d3.csv('/static/TestData.csv', function(data) {
+   		sel = d3.selectAll('.sbitem').attr("switch", "on").data(data)
+   		.style("color", function(d) {
+   			return d['Color'];
+   		});
+   		//color the buttons
+    	toggle(sel, callOn, callOff);
+	});
+	//end CSV call
 });
