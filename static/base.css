@@ -4,6 +4,11 @@ body{
     font-family: "Oxygen";
 }
 
+.caption {
+    text-align: center;
+    font-size:0.9em;
+}
+
 #sidebar a{
     color:#aaccff;
 }
