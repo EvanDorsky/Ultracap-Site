@@ -1,4 +1,4 @@
-html ::-webkit-scrollbar{
+#contentbox::-webkit-scrollbar, #contentbox ::-webkit-scrollbar{
     width: 0px;
 }
 
