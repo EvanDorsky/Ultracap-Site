@@ -124,5 +124,7 @@ svg.energy_sources{
     float:right;
     width:49%;
     height:100%;
+    margin: -20px;
+    padding:20px;
     overflow:auto;
 }
