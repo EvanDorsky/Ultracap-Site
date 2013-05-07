@@ -1,0 +1,5 @@
+Type,Energy Density (J/g),Power Density (W/g),Charge time (hours),Cycle/life,,Color,Link
+Lead Acid battery,127.8947368,0.18,8,600,,#00ff00,Lead
+Fuel Cell 25cm2,27,27,27,27,,#0088ff,Cells
+Ultracapacitors,8.34364399,71.81533694,0.000277778,50000,,#222222,Ultracaps
+Lithium Ion,768.7,0.743,4.607,700,,#aaaa00,Lion

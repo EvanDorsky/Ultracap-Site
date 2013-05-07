@@ -14,7 +14,8 @@ function graphGen (data, scales) {
     .x(function(d, i) {
         var theta = 2*Math.PI*i/length;
         var scale = scales[i];
-        console.log(i);
+        d=parseFloat(d);
+        console.log("THIS IS AN X DATAPOINT");
         console.log(d);
         console.log(w/2+scale(d)*Math.cos(theta));
         return w/2+scale(d)*Math.cos(theta);
@@ -22,6 +23,7 @@ function graphGen (data, scales) {
     .y(function(d, i) {
         var theta = 2*Math.PI*i/length;
         var scale = scales[i];
+        d=parseFloat(d);
         return w/2+scale(d)*Math.sin(theta);
     })
     .interpolate("linear");
@@ -32,7 +34,7 @@ function calcScales (scaleData) {
     var scales = [];
     for (var i = 0; i < scaleData.length; i++) {
         // var axisScale = d3.scale.linear()
-        // .domain([0, d3.max(sortedData[i])])
+        // .domain([0, d3.max(scaleData[i])])
         // .range([0, w/2]);
         var axisScale = d3.scale.log()
         .domain([d3.min(scaleData[i])-d3.min(scaleData[i])/2, d3.max(scaleData[i])])
@@ -52,7 +54,7 @@ function test (sender) {
 
 var polygon;
 
-var startIndex = 6;
+var startIndex = 0;
 
 // Data is bound to the line from the CSV, added to the SVG as a path, and styled
 // Everything has to happen here because CSV is asynchronous
@@ -61,12 +63,12 @@ d3.csv("/static/TestData.csv", function(data) {
     var dataArray = [];
     var subArray = [];
     for (var i = 0; i < data.length; i++) {
-        if (i!=4) {
+        if (i!=50) {
             var entry = data[i];
             subArray = [];
             var j = 0;
             for (var key in entry) {
-                if (j>startIndex && j<11) {
+                if (j>startIndex && j<7) {
                 // alert(j);
                 subArray.push(entry[key]);
             }
@@ -89,7 +91,7 @@ d3.csv("/static/TestData.csv", function(data) {
             //This is important; it makes everything numbers
         }
     }
-    console.log(sortedData);
+    // console.log(sortedData);
 
     // Then create the scales and append the axes
     // A scale for each row finding the max in the row
@@ -107,6 +109,7 @@ d3.csv("/static/TestData.csv", function(data) {
         .attr("fill-opacity", 0.3)
         .attr("index", i)
         .attr("fill", data[i]['Color'])
+        .attr("link", data[i]['Link'])
         .style("stroke", data[i]['Color']);
 
         polygons.push(polygon);
@@ -154,40 +157,6 @@ for (var j = 0; j < subArray.length; j++) {
     // .attr("transform", "rotate(90, 250, 250)");
 }
 
-// THEN MAKE BUTTONS
-var buttonDiameter = w / (dataArray.length);
-for (var i = 0; i < dataArray.length; i++) {
-    svgContainer.append("circle")
-    .attr("cx", function(d) {
-        return buttonDiameter/2+(i)*buttonDiameter;
-    })
-    .attr("cy", function(d) {
-        return w-buttonDiameter;
-    })
-    .attr("fill-opacity", 0.4)
-    .attr("class", "button")
-    .attr("r", buttonDiameter/2)
-    .attr("index", i)
-    .attr("fill", data[i]['Color'])
-    .style("stroke", data[i]['Color'])
-    .on("click", function() {
-        var index = parseInt(d3.select(this).attr("index"));
-        //index of the selected polygon
-
-        var gon = d3.select('[index="'+ index + '"]');
-
-        // Hide/show the corresponding polygon
-        gon.transition()
-        .style("opacity", function() {
-            var innergon = d3.select('[index="'+ index + '"]');
-            return innergon.style("opacity") == 0 ? 1 : 0;
-        });
-
-        d3.select(this).transition()
-        .attr("fill-opacity", function() {
-            return d3.select(this).attr("fill-opacity") == 0 ? 0.5  : 0;
-        });
-
         //recalculate scales based on the visible data
         var dataForScaling = [];
         for (var i = 0; i < dataArray.length; i++) {
@@ -210,8 +179,6 @@ for (var i = 0; i < dataArray.length; i++) {
             var newPolyline = graphGen(dataForScaling[i], newScales);
             innergon.transition.attr("d", newPolyline + "Z");
         }
-    });
-}
 
 });
 //end d3 CSV call

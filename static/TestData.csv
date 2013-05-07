@@ -1,17 +1,7 @@
-Type,Part No,Volume (cm^3),Mass (g),Capacitance (F),Max Voltage (V),Internal Resistance (Ohm),Energy Density (J/g),Energy Density (J/cm^3),Power Density (W/cm^3),Power Density (W/g),Charge time,URL,Cycle/life,Sustainability,Color
-Aerogel,Green,0.627554495,0.89,1,2.7,0.02,4.095505618,5.80826052,290.413026,204.7752809,minutes,,500000,,#00ff00
-Activated Carbon,Black,0.318909721,0.56,1,2.7,4,6.508928571,11.42956693,2.857391732,1.627232143,,,500000,,
-Polyacene,Flat,0.468,0.6,0.5,2.5,0.08,2.604166667,3.338675214,83.46688034,65.10416667,,,500000,,
-Activated Carbon,Giant,66.46544427,72.3,400,2.7,0.0032,20.1659751,21.93621085,17.13766473,15.75466805,,,500000,,
-Lithium-Ion Battery,,,,,,,,,,,,,,,
-"Lithium-ion panasonic
-
-Note: Particular product has no power density.Used top level specs",UR18650ZTA,8.374420702,48,,4.35,,792,223.2,0.22-4.0,.75-1.75,4h,http://www.panasonic.com/industrial/includes/pdf/ACA4000CE305-UR18650ZTA.pdf,800,,http://www.thermoanalytics.com/support/publications/batterytypesdoc.html
-lithium-ion Samsung,ICR 18650-30A,8.50131623,48,,4.35,,850.5,48,0.133,0.236,5.214h,http://www.samsungsdi.com/battery/cylindrical-ICR18650-30A.jsp,800,,http://www.thermoanalytics.com/support/publications/batterytypesdoc.html
-Polymer rechargeable LI,PGF 3558120,9.2872,55,,4.1,,663.6,3928.6,,,,,500,,http://www.thermoanalytics.com/support/publications/batterytypesdoc.html
-Gasoline,,,,,,,,,,,,,,,
-Fuel cell,http://www.arbin.com/single-fuel-cell-specifications,The link to the left has specs for five types of fuel cells,http://www.utcpower.com/products/purecell400,The link to the left has another spec,The fuel cells article in the dropbox also has specs,,,,,,,,,,
-Lead Acid battery,PS-682,634.368,1520,,6,,127.8947368,306.4467312,0.004256205,0.001776316,Order of hours,http://datasheet.octopart.com/PS-1270F1-Power-Sonic-datasheet-17530.pdf,600,,http://www.thermoanalytics.com/support/publications/batterytypesdoc.html
-Fuel Cell 25cm2, FC-H2-251REF,1152,1000,,DC: 0.7V,?,?,?,?,?,?,,?,,
-Coal,,,,,,,24000,23300.97087,,,,http://hypertextbook.com/facts/2003/JuliyaFisher.shtml,,,
-Wood,,,,,,,14890,23634.92063,,,,,,,
+Type,Energy Density (J/g),Power Density (W/g),Charge time,Cycle/life,Cost ($/KJ),Sustainability,Color,Link
+Carbon Ultracapacitors,8.34364399,71.81533694,0.000277778,500000,1043.254138,6,#224477,Ultracaps
+Graphene Ultra,308.16,2.7,0.00001,1000000,10000,5,#555555,Graphene
+Lithium Ion,768.7,0.236,4,700,0.130555556,2,#aa0000,Lion
+Fuel Cells,1584,0.04,0.083333333,100,1000,4,#0099ff,Cells
+Lead Acid,127.8947368,0.001776316,15,600,0.031111111,3,#11aa11,Lead
+Gasoline,44400,80000,0.083333333,1,2.94E-05,1,#ffdd00,gas
