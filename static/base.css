@@ -24,7 +24,7 @@ body{
 
 .spacer{
     float:left;
-    width:200px;
+    width:180px;
     height:100%;
 }
 
@@ -91,8 +91,9 @@ set on load
 .navitem{
     display:block;
     float:left;
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:3px;
+    padding-right:3px;
+    border: 1px black solid;
     text-decoration:none;
     height:100%;
     color:#e0e0e0;
