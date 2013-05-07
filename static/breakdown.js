@@ -22,14 +22,17 @@ function callOff(me){
 }
 
 $(document).ready(function(){
-	d3.csv('/static/TestData.csv', function(data) {
-   		sel = d3.selectAll('.sbitem').attr("switch", "off").data(data)
-   		.style("color", function(d) {
-   			return d['Color'];
-   		});
-      d3.selectAll('.polygon').style("opacity", 0);
-   		//color the buttons
+    d3.csv('/static/TestData.csv', function(data) {
+   	sel = d3.selectAll('.sbitem').attr("switch", "off").data(data)
+   	    .style("color", function(d) {
+   		return d['Color'];
+   	    });
+   	//color the buttons
     	toggle(sel, callOn, callOff);
-	});
-	//end CSV call
+	var t1 = $('.sbitem[link="Graphene"]');
+	var t2 = $('.sbitem[link="Lion"]');
+	t2.click();
+	t1.click();
+    });
+    //end CSV call
 });

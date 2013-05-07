@@ -110,7 +110,8 @@ d3.csv("/static/TestData.csv", function(data) {
         .attr("index", i)
         .attr("fill", data[i]['Color'])
         .attr("link", data[i]['Link'])
-        .style("stroke", data[i]['Color']);
+        .style("stroke", data[i]['Color'])
+	.style("opacity",0);
 
         polygons.push(polygon);
     }
