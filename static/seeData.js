@@ -5,7 +5,7 @@ var height = 500;
 function make_scale(data, index) {
   var get_elem = function(indx) {
     return function(d) {
-      return d[indx]
+      return is_sane(d[indx]);
     }
   };
   
@@ -24,6 +24,13 @@ function make_scale(data, index) {
     .range([padding, height])
 
   return [xScale, yScale];
+}
+
+function is_sane(value) {
+  if (value != undefined && !isNaN(value) && value!=""){
+    return parseFloat(value);
+  }
+  return 100;
 }
 
 function update(element, data, labels, points, axis, axis_rep, index) {
@@ -47,10 +54,10 @@ function update(element, data, labels, points, axis, axis_rep, index) {
   
   points.transition()
     .attr("cx", function(d) {
-      return xScale(d[index[0]]);
+      return xScale(is_sane(d[index[0]]));
     })
     .attr("cy", function(d) {
-      return yScale(d[index[1]]);
+      return yScale(is_sane(d[index[1]]));
     })
     .duration(1000);
 
@@ -69,15 +76,16 @@ function make_graph(element, data, index) {
     .classed("point", true)
 
   points.attr("cx", function(d) {
-    return xScale(d[index[0]]);
+    return xScale(is_sane(d[index[0]]));
   })
   .attr("cy", function(d) {
-    return yScale(d[index[1]]);
+    return yScale(is_sane(d[index[1]]));
   })
   .attr("r", 5)
   .style("fill", function(d) {
     return colorScale(d[3]);
   });
+  console.log(xScale(10));
 
   var xAxis = d3.svg.axis();
   xAxis.scale(xScale)
@@ -104,12 +112,10 @@ function make_graph(element, data, index) {
 
 function set_labels(element, xLabel, yLabel) {
   var xlabel = d3.select(".x_label");
-  console.log(xlabel.empty())
   if (xlabel.empty()) {
     xlabel = element.append("text")
   }
 
-  console.log(xlabel)
   xlabel.attr("class", "x_label")
       .attr("x", width/2)
       .attr("y", height+40)
@@ -129,18 +135,32 @@ function set_labels(element, xLabel, yLabel) {
     .attr("transform", "rotate(-90)");
 }
 
+var startIndex = 0;
 $(document).ready(function() {
+  d3.csv("/static/explore.csv", function(data) {
+    
+  var dataArray = [];
+  var subArray = [];
+  for (var i = 0; i < data.length; i++) {
+      if (i!=50) {
+          var entry = data[i];
+          subArray = [];
+          var j = 0;
+          for (var key in entry) {
+              if (j>startIndex && j<13) {
+              // alert(j);
+              subArray.push(entry[key]);
+          }
+          j++;
+      }
+      dataArray.push(subArray);
+    }
+  }
+
+  console.log(dataArray)
+  
   var svg = d3.select("svg.explore_data");
-  var testData = [
-      [.1,  .001, 4,    4],
-      [1,   2200,    3, 4],
-      [1,   3,    2,    3],
-      [1,   4,    .1,   3],
-      [20,  1,    1,    2],
-      [300, 4,    1,    2],
-      [.3,  3.5,  1,    3],
-      [1,   22,   300,  5]
-  ];
+  var testData = dataArray;
   var current_x = 0; 
   var current_y = 0;
   
@@ -150,20 +170,18 @@ $(document).ready(function() {
   var yAxis = ret[2];
   var gxAxis = ret[3];
   var gyAxis = ret[4];
-  
-  
-  labels = ["Energy Density (W/kg)",
-    "Something else (asdf)",
-    "Mass (kg",
-    "Why do you ask??"];
+  console.log(data); 
+  labels = ["Energy Density (J/g)",
+         "Energy Density (J/cm^3)", "Power Density (W/cm^3)",
+         "Power Density (W/g)", "Charge speed (1/h)",
+         "Lifetime cycles", "Kilojoules per dollar", "URL"]
 
   set_labels(svg, labels[0], labels[1]);
-  d3.selectAll(".point").on("click", function(d) {
+  /*d3.selectAll(".point").on("click", function(d) {
     update(svg, testData, labels, points,
       [xAxis, yAxis], [gxAxis, gyAxis], [current_x, current_y]);
-  });
+  });*/
 
-  console.log(labels);
   d3.selectAll("select.dropdown")
     .selectAll("option")
     .data(labels)
@@ -173,6 +191,10 @@ $(document).ready(function() {
       return d;
     })
 
+  d3.selectAll(".point").on("click", function(d, i) {
+    d3.select(".selectedItem").html(d[8]);
+  });
+
   d3.selectAll("select.dropdown").on("change", function(d, i) {
     if (d3.select(this).classed("x")) {
       current_x = this.selectedIndex;
@@ -181,5 +203,6 @@ $(document).ready(function() {
     }
     update(svg, testData, labels, points,
       [xAxis, yAxis], [gxAxis, gyAxis], [current_x, current_y]);
+  });
   });
 });

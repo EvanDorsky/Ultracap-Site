@@ -22,8 +22,13 @@ function callOff(me){
 }
 
 $(document).ready(function(){
-    sel = d3.selectAll('.sbitem');
-    toggle(sel, callOn, callOff);
-
-    
+	d3.csv('/static/TestData.csv', function(data) {
+   		sel = d3.selectAll('.sbitem').attr("switch", "on").data(data)
+   		.style("color", function(d) {
+   			return d['Color'];
+   		});
+   		//color the buttons
+    	toggle(sel, callOn, callOff);
+	});
+	//end CSV call
 });

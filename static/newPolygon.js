@@ -150,7 +150,7 @@ for (var j = 0; j < subArray.length; j++) {
     theta = 360*j/subArray.length;
     svgContainer
     .append("text")
-    .attr("x", w/2+40)
+    .attr("x", w/2+20)
     .attr("y", w/2-6)
     .text(texts[j])
     .attr("transform", "rotate("+theta+", "+w/2+","+w/2+")");

@@ -4,6 +4,21 @@ body{
     font-family: "Oxygen";
 }
 
+#sidebar a{
+    color:#aaccff;
+}
+
+#sidebar a:visited{
+    color:#aaccff;
+}
+
+#contentbox a{
+    color:#002255;
+}
+#contentbox a:visited{
+    color:#002255;
+}
+
 .header{
     opacity:0.9;
     position:absolute;
@@ -24,7 +39,7 @@ body{
 
 .spacer{
     float:left;
-    width:200px;
+    width:180px;
     height:100%;
 }
 
@@ -39,7 +54,8 @@ body{
 }
 
 #sidebar .sbitem[switch=on]{
-    background-color:#808080;
+    opacity:0.8;
+    background-color:#dddddd;
 }
 
 /*
@@ -91,8 +107,9 @@ set on load
 .navitem{
     display:block;
     float:left;
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:3px;
+    padding-right:3px;
+    border: 1px black solid;
     text-decoration:none;
     height:100%;
     color:#e0e0e0;
